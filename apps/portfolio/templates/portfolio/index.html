@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block title %}Portfolio{% endblock %}
+
+{% block header %}
+<header class="main pymd bg-blue-light bdb flex justify-center">
+	<h1 class="wrapper768">Portfolio</h1>
+</header>
+{% endblock %}
+
+{% block main %}
+<main>
+	<section class="flex-column align-center pysm">
+		{% for p in portfolio.project %}
+		<article class="wrapper768 pysm">
+			<a class="col-4" href="{% url 'portfolio:detail' slug=p.slug %}"><img style="width:100px;height:100px;" src="{{MEDIA_URL}}{{p.brandlogo.url}}" alt="" /></a>
+			<section class="col-8">
+				<a href="{% url 'portfolio:detail' slug=p.slug %}"><h1 class="title">{{p.title}}</h1></a>
+				<p class="desc">{{p.description}}</p>
+				{% if p.tags.names %}
+				<p class="desc sm highlight">Tags: {{p.tags.names|join:", "}}</p>
+				{% endif %}
+			</section>
+		</article>
+		<div class="wrapper768 pysm">
+			<hr class="line"><hr class="circle">
+		</div>
+		{% empty %}
+		{% endfor %}
+	</section>
+</main>
+{% endblock %}

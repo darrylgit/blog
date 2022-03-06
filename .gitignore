@@ -1,0 +1,19 @@
+*.pyc
+*~
+__pycache__
+db.sqlite3
+.env
+
+*.info.txt
+
+dump.rdb
+
+project/config/
+development_certs/
+
+.DS_Store
+
+### Django ###
+*.log
+*.pot
+local_settings.py

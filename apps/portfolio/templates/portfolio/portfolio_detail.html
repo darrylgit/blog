@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{project.title}}{% endblock %}
+
+{% block header %}
+<header style="background-color:#ef2f73;width:100vw;height:60vh;display:flex;flex-direction:column;align-items:center;" class="main pymd bdb">
+	<h2 style="font-size:28pt;color:rgba(255,255,255,.9);">PASSIOO.</h2>
+	<div style="margin-top:50px;display:flex;flex-direction:column;align-items:center;">
+	<p style="font-size:18pt;color:rgba(255,255,255,.9);text-align:center;" class="wrapper768">Building a React Native Event Ticket Marketplace App To Help Unlock New Growth Opportunities For a Fast Growing Startup.</p>
+	</div>
+</header>
+{% endblock %}
+
+{% block main %}
+<main class="container">
+	<div style="display:flex;flex-direction:row;justify-content:center;margin-top:-75px;">
+	{% for m in project.mockups.all %}
+	<div class="col" style="padding:0 25px;">
+		<img width=175 height=340 src="{{MEDIA_URL}}{{m.image.url}}" alt="" />
+	</div>
+	{% endfor %}
+	</div>
+</main>
+{% endblock %}

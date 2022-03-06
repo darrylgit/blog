@@ -1,0 +1,117 @@
+/*!
+ * Darryl Grid
+ */
+
+
+figure video{
+	width: 100%;
+	height: auto;
+}
+figure video,
+figcaption{
+	display: table-row;
+}
+figcaption a{
+	display: inline-block;
+	width: 100%;
+}
+
+figcaption a:hover {
+	opacity: .8;
+}
+figcaption img{
+	display: block;
+	width: 100%;
+}
+figcaption div.wrapper{
+	display: block;
+	width: 100%;
+}
+
+@media (min-width: 576px){
+	figcaption a{
+		display: inline-block;
+		width: 50%;
+	}
+}
+
+@media(min-width: 768px){
+	figcaption a{
+		display: inline-block;
+		width: 25%;
+	}
+}
+
+@media(min-width:992px) {
+	figcaption {
+		width:30%;
+	}
+	figure video,
+	figcaption {
+		display: table-cell;
+		vertical-align: top;
+	}
+
+	figcaption a{
+		display: block;
+		width: 100%;
+		padding: 0 5px 5px;
+		display: flex;
+  		align-items: start;
+	}
+
+	figcaption img{
+		display: inline-block;
+		width: 50%;
+	}
+
+	figcaption div.wrapper{
+		display: inline-block;
+		width: 50%;
+		height: 50px;
+		padding-left: 10px;
+	}
+}
+
+/* figure width */
+figure{max-width:90%;}
+figure{display:table;font-size:0;}
+
+@media(min-width:768px){
+	figure{max-width:720px;}
+}
+@media(min-width:992px){
+	figure{max-width:920px;}
+}
+
+/* padding */
+@media(min-width: 576px) and (max-width:768px){
+	figcaption a:nth-child(odd){
+		padding-right: 5px;
+	}
+	figcaption a:nth-child(even){
+		padding-left: 5px;
+	}
+}
+
+/*
+* add padding to group of 4
+*/
+@media(min-width: 768px) and (max-width:992px){
+	figcaption a:nth-child(4n+1){
+		padding-right: .5rem;
+	}
+	figcaption a:nth-child(4n+4) {
+		padding-left: .5rem;
+	}
+
+	figcaption a:nth-child(4n+2),
+	figcaption a:nth-child(4n+3) {
+		padding: 0 .25rem;
+	}
+}
+@media(max-width:992px){
+	figcaption,
+	figcaption a{margin: 30px 0 0;}
+}
+

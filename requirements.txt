@@ -1,0 +1,5 @@
+Django==2.2.5
+django-taggit==0.24.0
+Pillow==5.4.1
+pytz==2019.2
+sqlparse==0.3.0
