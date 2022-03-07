@@ -1,5 +1,6 @@
 Django==2.2.5
 django-taggit==0.24.0
 Pillow==5.4.1
+python-dotenv==0.14.0
 pytz==2019.2
 sqlparse==0.3.0
