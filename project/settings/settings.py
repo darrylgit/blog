@@ -15,8 +15,7 @@ INSTALLED_APPS+=[
     'taggit',
     #apps
     'apps.flatpage',
-    'apps.blog',
-    'apps.portfolio',
+    'apps.project',
     'apps.mockup'
 ]
 

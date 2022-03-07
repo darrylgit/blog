@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}Projects{% endblock %}
+
+{% block header %}
+<header class="main pymd bg-blue-light bdb flex justify-center">
+	<h1 class="wrapper768">Projects</h1>
+</header>
+{% endblock %}
+
+{% block main %}
+<main>
+	<section class="flex-column align-center pysm">
+		{% for project in projects %}
+		<article class="wrapper768 pysm">
+			<a class="col-4" href="{% url 'project:detail' slug=project.slug %}"><img style="width:100px;height:100px;" src="{{MEDIA_URL}}{{project.brandlogo.url}}" alt="{{project.slug}}" /></a>
+			<section class="col-8">
+				<a href="{% url 'project:detail' slug=project.slug %}"><h1 class="title">{{project.title}}</h1></a>
+				<p class="desc">{{project.description}}</p>
+				{% if project.updated_at %}
+				<p class="desc">{{project.updated_at}}</p>
+				{% endif %}
+				{% if project.tags.names %}
+				<p class="desc sm highlight">Tags: {{project.tags.names|join:", "}}</p>
+				{% endif %}
+			</section>
+		</article>
+		<div class="wrapper768 pysm">
+			<hr class="line"><hr class="circle">
+		</div>
+		{% empty %}
+		{% endfor %}
+	</section>
+</main>
+{% endblock %}

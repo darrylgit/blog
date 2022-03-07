@@ -25,6 +25,5 @@ urlpatterns = [
 
 urlpatterns += [
 	url(r'', include('apps.flatpage.urls', namespace='flatpage')),
-	url(r'', include('apps.blog.urls', namespace='blog')),
-    url(r'', include('apps.portfolio.urls', namespace='portfolio')),
+    url(r'', include('apps.project.urls', namespace='project')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from apps.portfolio.models import Portfolio
+from apps.project.models import Project
 
 # Create your models here.
 
@@ -10,21 +10,20 @@ class Mockup(models.Model):
 
 	FIRST, SECOND, THIRD = ('First', 'Second', 'Third')
 
-	POSITION_CHOICES = (
+	RANK_CHOICES = (
 		(FIRST, _('First')),
 		(SECOND, _('Second')),
 		(THIRD, _('Third')),
 	)
 
-	project = models.ForeignKey(Portfolio, related_name="mockups", on_delete=models.CASCADE)
-	position = models.CharField(max_length=20, choices=POSITION_CHOICES, default=FIRST)
-	title = models.CharField(max_length=200, null = True, default=lorem_default)
-	alt = models.CharField(max_length=400, null=True, default=lorem_default)
-	image = models.ImageField(upload_to = 'portfolio/img/', null = True)
+	project         = models.ForeignKey(Project, related_name="mockups", on_delete=models.CASCADE)
+	rank            = models.CharField(max_length=20, choices=RANK_CHOICES, default=FIRST)
+	alternate_text  = models.CharField(max_length=400, null=True)
+	source          = models.ImageField(upload_to='mockup/images/', null=True)
 
 	class Meta:
 		verbose_name = 'Mockup'
-		unique_together = (('project','position'),)
-
-	def __str__(self):
-		return self.title
+		unique_together = (('project','rank'),)
+		
+	def __int__(self):
+		return self.id
