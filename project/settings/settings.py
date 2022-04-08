@@ -14,9 +14,13 @@ ALLOWED_HOSTS = os.environ.get('APP_ALLOWED_HOSTS', '127.0.0.1').split(',')
 INSTALLED_APPS+=[
     'taggit',
     #apps
+    'apps.blog',
+    'apps.casestudy',
     'apps.flatpage',
     'apps.project',
-    'apps.mockup'
+    'apps.media',
+    'apps.mockup',
+    'apps.writeup'
 ]
 
 DATABASE_DEFAULT = {
