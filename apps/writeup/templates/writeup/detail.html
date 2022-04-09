@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ writeup.title }}{% endblock %}
+
+{% block header %}
+<header class="main flex justify-center pymd bg-blue-light bdb">
+	<div class="wrapper768">
+		<div class="container-fluid">
+			<div class="row no-gutters">
+				<div class="col-12">
+					<h2>{{ writeup.title }}</h2>
+				</div>
+			</div>
+			<div class="row no-gutters">
+				<div class="col-12">
+					<h3>{{ writeup.description }}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+{% endblock %}
+
+{% block main %}
+<div class="container pymd">
+	<div class="row">
+		<div class="col-sm-6">
+			<p class="h5">{{ writeup.text }}</p>
+		</div>
+	</div>
+</div>
+{% endblock %}

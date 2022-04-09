@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block title %}Writeup{% endblock %}
+
+{% block header %}
+<header class="main pymd bg-blue-light bdb flex justify-center">
+	<h1 class="wrapper768">Writeup</h1>
+</header>
+{% endblock %}
+
+{% block main %}
+<main>
+	<section class="flex-column align-center pysm">
+        {% for writeup in writeups %}
+        <article class="wrapper768 pysm">
+            <a class="col-4" href="{% url 'blog:detail' slug=writeup.slug %}">
+                {% if writeup.writeup_medias.all %}
+                <img style="width:100px;height:100px;" src="{{ MEDIA_URL }}{{ writeup.writeup_medias.all.0.media.source.url }}" alt="{{ writeup.slug }}" />
+                {% else %}
+                <div style="width:100px; height:100px; display:flex; align-items:center; justify-content:center; border:1px solid gray; border-radius: 4px;">
+                    <p class="h5">{{ writeup.title.0 }}</p>
+                </div>
+                {% endif %}
+            </a>
+            <section class="col-8">
+                <a href="{% url 'blog:detail' slug=writeup.slug %}"><h1 class="title">{{ writeup.title }}</h1></a>
+                <p class="desc">{{ writeup.description }}</p>
+                {% if writeup.updated_at %}
+                <p class="desc">{{ writeup.updated_at }}</p>
+                {% endif %}
+                {% if writeup.tags.names %}
+                <p class="desc sm highlight">Tags: {{ writeup.tags.names|join:", " }}</p>
+                {% endif %}
+            </section>
+        </article>
+        <div class="wrapper768 pysm">
+            <hr class="line"><hr class="circle">
+        </div>
+        {% empty %}
+        {% endfor %}
+	</section>
+</main>
+{% endblock %}

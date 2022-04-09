@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ blog_writeup.writeup.title }}{% endblock %}
+
+{% block header %}
+<header style="width:100vw;height:60vh;display:flex;flex-direction:column;align-items:center;" class="main pymd bdb">
+	<h2 style="font-size:28pt;">{{ blog_writeup.writeup.title }}.</h2>
+	<div style="margin-top:50px;display:flex;flex-direction:column;align-items:center;">
+		<p style="font-size:18pt;text-align:center;" class="wrapper768">{{ blog_writeup.writeup.recap }}</p>
+	</div>
+</header>
+{% endblock %}
+
+{% block main %}
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block header %}
+<header class="main pymd bg-blue-light bdb flex justify-center">
+	<h1 class="wrapper768">Blog</h1>
+</header>
+{% endblock %}
+
+{% block main %}
+<main>
+	<section class="flex-column align-center pysm">
+		{% for blog in blogs %}
+			{% for blog_writeup in blog.blog_writeups.all %}
+			<article class="wrapper768 pysm">
+				<a class="col-4" href="{% url 'writeup:detail' slug=blog_writeup.writeup.slug %}">
+					{% if blog_writeup.writeup.writeup_medias.all %}
+					<img style="width:100px;height:100px;" src="{{ MEDIA_URL }}{{ blog_writeup.writeup.writeup_medias.all.0.media.source.url }}" alt="{{ blog_writeup.writeup.slug }}" />
+					{% else %}
+					<div style="width:100px; height:100px; display:flex; align-items:center; justify-content:center; border:1px solid gray; border-radius: 4px;">
+						<p class="h5">{{ blog_writeup.writeup.title.0 }}</p>
+					</div>
+					{% endif %}
+				</a>
+				<section class="col-8">
+					<a href="{% url 'writeup:detail' slug=blog_writeup.writeup.slug %}"><h1 class="title">{{ blog_writeup.writeup.title }}</h1></a>
+					<p class="desc">{{ blog_writeup.writeup.description }}</p>
+					{% if blog_writeup.writeup.updated_at %}
+					<p class="desc">{{ blog_writeup.writeup.updated_at }}</p>
+					{% endif %}
+					{% if blog_writeup.writeup.tags.names %}
+					<p class="desc sm highlight">Tags: {{ blog_writeup.writeup.tags.names|join:", " }}</p>
+					{% endif %}
+				</section>
+			</article>
+			<div class="wrapper768 pysm">
+				<hr class="line"><hr class="circle">
+			</div>
+			{% empty %}
+			{% endfor %}
+		{% empty %}
+		{% endfor %}
+	</section>
+</main>
+{% endblock %}
