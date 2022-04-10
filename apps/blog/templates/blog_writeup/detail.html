@@ -21,9 +21,9 @@
 <div class="container-fluid pt-5">
 	<div class="row">
 		<div class="col-sm-6 offset-sm-1">
-		{% for blog_writeup_segment in blog_writeup.writeup.writeup_segments.all %}
+		{% for blog_writeup_segment in blog_writeup.writeup.writeup_segments.all|dictsort:"rank" %}
 			<div class="row">
-				{% if blog_writeup_segment.writeup_segment_medias.all %}
+				{% if blog_writeup_segment.writeup_segment_medias.all|dictsort:"rank" %}
 					{% if blog_writeup_segment.writeup_segment_medias.all.0.media.source.url %}
 					<div class="col-sm-12">
 						{% if forloop.first %}
@@ -48,7 +48,7 @@
 					<div class="row">
 					{% endif %}
 						<div class="col-sm-12">
-							<p class="h5">{{ blog_writeup_segment.text }}</p>
+							<p style="font-size:20px;font-weight:400;">{{ blog_writeup_segment.text }}</p>
 						</div>
 					</div>
 				</div>
