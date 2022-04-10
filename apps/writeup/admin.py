@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Writeup, WriteupMedia
+from .models import Writeup, WriteupMedia, WriteupSegment, WriteupSegmentMedia
 
 # Register your models here.
 @admin.register(Writeup)
@@ -12,3 +12,13 @@ class WriteupAdmin(admin.ModelAdmin):
 class WriteupMediaAdmin(admin.ModelAdmin):
 	fields              = ('writeup', 'media', 'rank')
 	list_display        = ('writeup', 'media', 'rank')
+
+@admin.register(WriteupSegment)
+class WriteupSegmentAdmin(admin.ModelAdmin):
+	fields              = ('writeup', 'rank', 'text', 'is_media')
+	list_display        = ('writeup', 'rank', 'text', 'is_media')
+
+@admin.register(WriteupSegmentMedia)
+class WriteupSegmentMediaAdmin(admin.ModelAdmin):
+	fields              = ('writeup_segment', 'media', 'rank')
+	list_display        = ('writeup_segment', 'media', 'rank')
