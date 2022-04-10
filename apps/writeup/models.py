@@ -12,8 +12,7 @@ class Writeup(models.Model):
         return "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi eos laboriosam et eius."
 
     recap         = models.TextField(null=True)
-
-    text          = models.TextField(null=True, blank=True)
+    
     author        = models.ForeignKey(User, on_delete=models.CASCADE)
 
     title         = models.CharField(max_length=200, null=True)

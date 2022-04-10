@@ -21,62 +21,41 @@
 <div class="container-fluid pt-5">
 	<div class="row">
 		<div class="col-sm-6 offset-sm-1">
-			{% if blog_writeup.writeup.writeup_segments.all.0.text %}
-				{% for blog_writeup_segment in blog_writeup.writeup.writeup_segments.all %}
-					<div class="row">
-						{% if blog_writeup_segment.writeup_segment_medias.all %}
-							{% if blog_writeup_segment.writeup_segment_medias.all.0.media.source.url %}
+		{% for blog_writeup_segment in blog_writeup.writeup.writeup_segments.all %}
+			<div class="row">
+				{% if blog_writeup_segment.writeup_segment_medias.all %}
+					{% if blog_writeup_segment.writeup_segment_medias.all.0.media.source.url %}
+					<div class="col-sm-12">
+						{% if forloop.first %}
+						<div class="row">
+						{% else %}
+						<div class="row pt-4">
+						{% endif %}
 							<div class="col-sm-12">
-								{% if forloop.first %}
-								<div class="row">
-								{% else %}
-								<div class="row pt-4">
-								{% endif %}
-									<div class="col-sm-12">
-										<img style="width:100%;" src="{{ MEDIA_URL }}{{ blog_writeup_segment.writeup_segment_medias.all.0.media.source.url }}" alt="{{ blog_writeup_segment.writeup_segment_medias.all.0.media.alternate_text }}" />
-									</div>
-								</div>
-							</div>
-							{% endif %}
-						{% endif %}
-					</div>
-					<div class="row">
-						{% if blog_writeup_segment.text %}
-						<div class="col-sm-12">
-							{% if not forloop.first or forloop.first and blog_writeup_segment.writeup_segment_medias.all.0.media.source.url %}
-							<div class="row pt-4">
-							{% else %}
-							<div class="row">
-							{% endif %}
-								<div class="col-sm-12">
-									<p class="h5">{{ blog_writeup_segment.text }}</p>
-								</div>
+								<img style="width:100%;" src="{{ MEDIA_URL }}{{ blog_writeup_segment.writeup_segment_medias.all.0.media.source.url }}" alt="{{ blog_writeup_segment.writeup_segment_medias.all.0.media.alternate_text }}" />
 							</div>
 						</div>
-						{% endif %}
 					</div>
-				{% endfor %}
-			{% elif blog_writeup.writeup.text %}
+					{% endif %}
+				{% endif %}
+			</div>
 			<div class="row">
+				{% if blog_writeup_segment.text %}
 				<div class="col-sm-12">
+					{% if not forloop.first or forloop.first and blog_writeup_segment.writeup_segment_medias.all.0.media.source.url %}
+					<div class="row pt-4">
+					{% else %}
 					<div class="row">
+					{% endif %}
 						<div class="col-sm-12">
-							<p class="h5">{{ blog_writeup.writeup.text }}</p>
+							<p class="h5">{{ blog_writeup_segment.text }}</p>
 						</div>
 					</div>
 				</div>
+				{% endif %}
 			</div>
-			{% else %}
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="row">
-						<div class="col-sm-12">
-							<p class="h5">Coming soon.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			{% endif %}
+		{% empty %}
+		{% endfor %}
 		</div>
 	</div>
 </div>
