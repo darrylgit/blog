@@ -23,8 +23,10 @@
                 {% endif %}
             </a>
             <section class="col-8">
-                <a href="{% url 'blog:detail' slug=writeup.slug %}"><h1 class="title">{{ writeup.title }}</h1></a>
-                <p class="desc">{{ writeup.description }}</p>
+                <a href="{% url 'blog:detail' slug=writeup.slug %}">
+                    <h1 class="title">{{ writeup.title }}</h1>
+                    <p class="desc">{{ writeup.description }}</p>
+                </a>
                 {% if writeup.updated_at %}
                 <p class="desc">{{ writeup.updated_at }}</p>
                 {% endif %}

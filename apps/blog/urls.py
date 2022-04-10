@@ -5,8 +5,8 @@ from .views import BlogIndexView, BlogDetailView, BlogWriteupIndexView, BlogWrit
 app_name="blog"
 
 writeuppatterns =[
-	url(r'^$', BlogIndexView.as_view(), name='writeup-index'),
-	url(r'^(?P<slug>.*)/$', BlogDetailView.as_view(), name='writeup-detail')
+	url(r'^$', BlogWriteupIndexView.as_view(), name='writeup-index'),
+	url(r'^(?P<slug>.*)/$', BlogWriteupDetailView.as_view(), name='writeup-detail')
 ]
 
 urlpatterns =[

@@ -3,14 +3,53 @@
 {% block title %}{{ blog_writeup.writeup.title }}{% endblock %}
 
 {% block header %}
-<header style="width:100vw;height:60vh;display:flex;flex-direction:column;align-items:center;" class="main pymd bdb">
-	<h2 style="font-size:28pt;">{{ blog_writeup.writeup.title }}.</h2>
-	<div style="margin-top:50px;display:flex;flex-direction:column;align-items:center;">
-		<p style="font-size:18pt;text-align:center;" class="wrapper768">{{ blog_writeup.writeup.recap }}</p>
+<header class="container-fluid border-bottom py-5 bg-blue-light" style="margin-top:50px;">
+	<div class="row">
+		<div class="col-sm-6 offset-sm-2">
+			<h2>{{ blog_writeup.writeup.title }}</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4 offset-sm-2">
+			<h3>{{ blog_writeup.writeup.description }}</h2>
+		</div>
 	</div>
 </header>
 {% endblock %}
 
 {% block main %}
-
+<div class="container-fluid pt-5">
+	<div class="row">
+		<div class="col-sm-6 offset-sm-2">
+			{% if blog_writeup.writeup.writeup_segments.all.0.text %}
+				{% for blog_writeup_segment in blog_writeup.writeup.writeup_segments.all %}
+					<div class="row">
+						{% if blog_writeup_segment.writeup_segment_medias.all %}
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-sm-12 pt-5">
+									<img style="width:100%;" src="{{ MEDIA_URL }}{{ blog_writeup_segment.writeup_segment_medias.all.0.media.source.url }}" alt="{{ blog_writeup_segment.writeup_segment_medias.all.0.media.alternate_text }}" />
+								</div>
+							</div>
+						</div>
+						{% endif %}
+						{% if blog_writeup_segment.text %}
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-sm-12 pt-5">
+									<p class="h5">{{ blog_writeup_segment.text }}</p>
+								</div>
+							</div>
+						</div>
+						{% endif %}
+					</div>
+				{% endfor %}
+			{% elif blog_writeup.writeup.text %}
+			<p class="h5">{{ blog_writeup.writeup.text }}</p>
+			{% else %}
+			<p class="h5">Coming soon.</p>
+			{% endif %}
+		</div>
+	</div>
+</div>
 {% endblock %}

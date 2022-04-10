@@ -21,7 +21,34 @@
 <div class="container-fluid pt-5">
 	<div class="row">
 		<div class="col-sm-6 offset-sm-2">
+			{% if writeup.writeup_segments.all.0.text %}
+				{% for writeup_segment in writeup.writeup.writeup_segments.all %}
+					<div class="row">
+						{% if writeup_segment.writeup_segment_medias.all %}
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-sm-12 pt-5">
+									<img style="width:100%;" src="{{ MEDIA_URL }}{{ writeup_segment.writeup_segment_medias.all.0.media.source.url }}" alt="{{ writeup_segment.writeup_segment_medias.all.0.media.alternate_text }}" />
+								</div>
+							</div>
+						</div>
+						{% endif %}
+						{% if writeup_segment.text %}
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-sm-12 pt-5">
+									<p class="h5">{{ writeup_segment.text }}</p>
+								</div>
+							</div>
+						</div>
+						{% endif %}
+					</div>
+				{% endfor %}
+			{% elif writeup.text %}
 			<p class="h5">{{ writeup.text }}</p>
+			{% else %}
+			<p class="h5">Coming soon.</p>
+			{% endif %}
 		</div>
 	</div>
 </div>

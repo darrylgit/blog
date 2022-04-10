@@ -14,18 +14,20 @@
 		{% for blog in blogs %}
 			{% for blog_writeup in blog.blog_writeups.all %}
 			<article class="wrapper768 pysm">
-				<a class="col-4" href="{% url 'writeup:detail' slug=blog_writeup.writeup.slug %}">
-					{% if blog_writeup.writeup.writeup_medias.all %}
+				<a class="col-4" href="{% url 'blog:writeup-detail' slug=blog_writeup.writeup.slug %}">
+					{% if blog_writeup.writeup.writeup_medias.all.0.media.source.url %}
 					<img style="width:100px;height:100px;" src="{{ MEDIA_URL }}{{ blog_writeup.writeup.writeup_medias.all.0.media.source.url }}" alt="{{ blog_writeup.writeup.slug }}" />
 					{% else %}
 					<div style="width:100px; height:100px; display:flex; align-items:center; justify-content:center; border:1px solid gray; border-radius: 4px;">
-						<p class="h5">{{ blog_writeup.writeup.title.0 }}</p>
+						<p class="h5" style="font-size: 36pt;font-weight: 800;">{{ blog_writeup.writeup.title.0 }}{{ blog_writeup.writeup.title.1 }}</p>
 					</div>
 					{% endif %}
 				</a>
 				<section class="col-8">
-					<a href="{% url 'writeup:detail' slug=blog_writeup.writeup.slug %}"><h1 class="title">{{ blog_writeup.writeup.title }}</h1></a>
-					<p class="desc">{{ blog_writeup.writeup.description }}</p>
+					<a href="{% url 'blog:writeup-detail' slug=blog_writeup.writeup.slug %}">
+						<h1 class="title">{{ blog_writeup.writeup.title }}</h1>
+						<p class="desc">{{ blog_writeup.writeup.description }}</p>
+					</a>
 					{% if blog_writeup.writeup.updated_at %}
 					<p class="desc">{{ blog_writeup.writeup.updated_at }}</p>
 					{% endif %}

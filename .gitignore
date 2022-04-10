@@ -8,9 +8,9 @@ db.sqlite3
 
 dump.rdb
 
-project/config/
-project/static/media/
-development_certs/
+/project/config/
+/static/media/
+/development_certs/
 
 .DS_Store
 
