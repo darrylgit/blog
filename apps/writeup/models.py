@@ -48,3 +48,34 @@ class WriteupMedia(models.Model):
 
     def __int__(self):
         return self.id
+
+class WriteupSegment(models.Model):
+    # segment of writeup, ie paragraphs or media
+    # segment may be group of text, photos, or videos
+    rank         = models.DecimalField(max_digits=3, decimal_places=2)
+    text         = models.TextField(null=True, blank=True)
+
+    is_media     = models.BooleanField(default=False)
+
+    writeup      = models.ForeignKey(
+        Writeup, 
+        related_name="writeup_segments", 
+        on_delete=models.CASCADE)
+
+    def __int__(self):
+        return self.id
+
+class WriteupSegmentMedia(models.Model):
+    rank            = models.DecimalField(max_digits=3, decimal_places=2)
+    media           = models.ForeignKey(
+        Media, 
+        related_name="writeup_segment_medias", 
+        on_delete=models.CASCADE)
+
+    writeup_segment = models.ForeignKey(
+        WriteupSegment, 
+        related_name="writeup_segment_medias", 
+        on_delete=models.CASCADE)
+
+    def __int__(self):
+        return self.id
